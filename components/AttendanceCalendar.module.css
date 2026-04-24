@@ -1,0 +1,158 @@
+.wrapper {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.navBtns { display: flex; align-items: center; gap: 0.5rem; }
+
+.navBtn {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.navBtn:hover { background: var(--accent-blue-dim); color: var(--accent-blue); }
+
+.dateLabel { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); min-width: 200px; text-align: center; }
+
+.modeBtns { display: flex; gap: 0.375rem; }
+
+.modeBtn {
+  display: flex; align-items: center; gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.78rem; font-weight: 500;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.modeBtn:hover { color: var(--text-primary); background: var(--bg-glass); }
+.modeActive { background: var(--accent-blue-dim) !important; color: var(--accent-blue) !important; border-color: rgba(88,166,255,0.3) !important; }
+
+/* ---- WEEK GRID ---- */
+.weekGrid {
+  display: grid;
+  grid-template-columns: 90px repeat(6, 1fr);
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.dayHeader {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.72rem; font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass);
+}
+.todayHeader { background: var(--accent-blue-dim) !important; color: var(--accent-blue) !important; }
+.dayShort { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.dayNum { font-size: 1rem; font-weight: 700; margin-top: 2px; }
+
+.periodLabel {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0.5rem 0.5rem;
+  min-height: 48px;
+}
+.periodTime { font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; }
+.periodSubject { font-size: 0.6rem; color: var(--text-muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.cell {
+  min-height: 48px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+  cursor: default;
+  position: relative;
+}
+.cell:hover { background: rgba(255,255,255,0.05); }
+.cellDisabled { background: transparent; border-color: transparent; }
+
+.cellDot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--cell-color);
+  box-shadow: 0 0 6px var(--cell-color);
+}
+
+/* ---- MONTH GRID ---- */
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.monthDayHeader {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+}
+
+.monthCell {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+}
+
+.monthNum { font-size: 0.78rem; font-weight: 500; }
+.monthDot { width: 6px; height: 6px; border-radius: 50%; }
+
+.status_full    { background: var(--accent-green-dim); border-color: rgba(63,185,80,0.2); }
+.status_full .monthDot { background: var(--accent-green); }
+.status_partial { background: var(--accent-amber-dim); border-color: rgba(210,153,34,0.2); }
+.status_partial .monthDot { background: var(--accent-amber); }
+.status_absent  { background: var(--accent-red-dim); border-color: rgba(248,81,73,0.2); }
+.status_absent .monthDot { background: var(--accent-red); }
+.status_none    {}
+
+.isToday { outline: 1px solid var(--accent-blue); outline-offset: 1px; }
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  pointer-events: none;
+  z-index: 999;
+  white-space: nowrap;
+  box-shadow: var(--shadow-card);
+}
+
+/* Legend */
+.legend {
+  display: flex; gap: 1.25rem; margin-top: 1rem;
+  font-size: 0.75rem; color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+.legend span { display: flex; align-items: center; gap: 0.375rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }

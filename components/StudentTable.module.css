@@ -1,0 +1,43 @@
+.wrapper { display: flex; flex-direction: column; gap: 1rem; }
+
+.searchRow {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.searchWrap { position: relative; flex: 1; max-width: 320px; }
+.searchIcon { position: absolute; left: 0.625rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.search { width: 100%; padding-left: 2rem !important; }
+.count { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
+.tableWrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border-glass); }
+
+.table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.table thead tr { background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border-glass); }
+.table th {
+  padding: 0.75rem 1rem; text-align: left;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-secondary); white-space: nowrap;
+}
+.table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-subtle); color: var(--text-primary); }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+
+.sortable { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 4px; }
+.sortable:hover { color: var(--text-primary); }
+
+.rollNo { font-family: monospace; font-size: 0.8rem; color: var(--text-secondary); }
+.name { font-weight: 500; }
+
+.badge {
+  display: inline-block; padding: 0.2rem 0.5rem;
+  border-radius: 99px; font-size: 0.75rem; font-weight: 600;
+}
+.green { background: var(--accent-green-dim); color: var(--accent-green); }
+.amber { background: var(--accent-amber-dim); color: var(--accent-amber); }
+.red   { background: var(--accent-red-dim);   color: var(--accent-red);   }
+
+.statusText { font-size: 0.75rem; font-weight: 500; }
+.statusGreen { color: var(--accent-green); }
+.statusAmber { color: var(--accent-amber); }
+.statusRed   { color: var(--accent-red);   }
+
+.empty { text-align: center; padding: 2rem; color: var(--text-muted); }
