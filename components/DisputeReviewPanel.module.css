@@ -1,0 +1,53 @@
+.list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.empty {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.5rem; padding: 3rem; text-align: center;
+  color: var(--text-secondary);
+}
+.emptyIcon { color: var(--accent-green); opacity: 0.7; margin-bottom: 0.25rem; }
+.empty p  { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin: 0; }
+.empty span { font-size: 0.82rem; color: var(--text-muted); }
+
+.card {
+  background: var(--bg-glass); border: 1px solid rgba(210,153,34,0.3);
+  border-radius: var(--radius-md); padding: 1rem;
+  display: flex; flex-direction: column; gap: 0.625rem;
+  animation: fadeUp 0.3s ease both;
+}
+
+.cardHeader { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.studentInfo { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; }
+.alertIcon { color: var(--accent-amber); flex-shrink: 0; }
+.roll { font-family: monospace; font-size: 0.75rem; color: var(--text-muted); }
+
+.meta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  font-size: 0.78rem; color: var(--text-secondary);
+}
+.markedAbsent { color: var(--accent-red); font-weight: 600; }
+
+.note {
+  font-size: 0.82rem; color: var(--text-secondary); font-style: italic;
+  background: var(--bg-secondary); border-left: 3px solid var(--accent-amber);
+  padding: 0.5rem 0.75rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 0;
+}
+
+.actions { display: flex; gap: 0.5rem; }
+.approveBtn {
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.4rem 0.875rem; border-radius: var(--radius-sm);
+  background: var(--accent-green-dim); border: 1px solid rgba(63,185,80,0.3);
+  color: var(--accent-green); font-size: 0.78rem; font-weight: 600;
+  transition: all 0.2s;
+}
+.approveBtn:hover { background: var(--accent-green); color: #fff; }
+.rejectBtn {
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.4rem 0.875rem; border-radius: var(--radius-sm);
+  background: var(--accent-red-dim); border: 1px solid rgba(248,81,73,0.3);
+  color: var(--accent-red); font-size: 0.78rem; font-weight: 600;
+  transition: all 0.2s;
+}
+.rejectBtn:hover { background: var(--accent-red); color: #fff; }

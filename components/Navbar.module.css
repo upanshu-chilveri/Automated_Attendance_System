@@ -69,3 +69,17 @@
   color: var(--accent-red);
   border-color: rgba(248, 81, 73, 0.3);
 }
+
+.alertBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 99px;
+  background: var(--accent-amber-dim);
+  color: var(--accent-amber);
+  border: 1px solid rgba(210, 153, 34, 0.35);
+  animation: pulse 2s infinite;
+}

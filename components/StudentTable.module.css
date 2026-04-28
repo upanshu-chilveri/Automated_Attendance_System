@@ -21,8 +21,12 @@
 .table tbody tr:last-child td { border-bottom: none; }
 .table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
-.sortable { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 4px; }
+.sortable { cursor: pointer; user-select: none; }
 .sortable:hover { color: var(--text-primary); }
+.thHeader { display: inline-flex; align-items: center; gap: 4px; }
+
+.row { cursor: pointer; }
+.row:hover td { background: rgba(88,166,255,0.04) !important; }
 
 .rollNo { font-family: monospace; font-size: 0.8rem; color: var(--text-secondary); }
 .name { font-weight: 500; }
@@ -40,4 +44,16 @@
 .statusAmber { color: var(--accent-amber); }
 .statusRed   { color: var(--accent-red);   }
 
+.rowExportBtn {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.rowExportBtn:hover { background: var(--accent-blue-dim); border-color: var(--accent-blue); color: var(--accent-blue); }
+
 .empty { text-align: center; padding: 2rem; color: var(--text-muted); }
+.hint  { font-size: 0.72rem; color: var(--text-muted); text-align: right; }

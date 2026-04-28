@@ -34,12 +34,31 @@
 .fields label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
 .fields input, .fields select { width: 100%; }
 
+.bulkRow {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.tally { color: var(--accent-blue); font-size: 0.8rem; font-weight: 600; }
+.bulkBtns { display: flex; gap: 0.4rem; }
+.bulkBtn {
+  display: flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  transition: all 0.2s;
+}
+.bulkPresent { background: var(--accent-green-dim); border-color: rgba(63,185,80,0.3); color: var(--accent-green); }
+.bulkPresent:hover { background: var(--accent-green); color: #fff; }
+.bulkAbsent  { background: var(--accent-red-dim);   border-color: rgba(248,81,73,0.3);  color: var(--accent-red); }
+.bulkAbsent:hover  { background: var(--accent-red);   color: #fff; }
+
 .studentListHeader {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
-.tally { color: var(--accent-blue); }
+.hint { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; }
 
 .studentList { overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
 

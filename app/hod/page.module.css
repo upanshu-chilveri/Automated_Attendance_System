@@ -1,11 +1,20 @@
-/* HOD page — same shared layout + accordion styles */
-.page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; display: flex; flex-direction: column; gap: 2rem; }
+/* HOD Dashboard */
+.page { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 4rem; display: flex; flex-direction: column; gap: 2rem; }
 .pageHeader { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; animation: fadeUp 0.3s ease both; }
-.pageTitle { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.pageTitle { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .pageSubtitle { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+.headerTabs { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: flex-start; }
+.tabBtn { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 500; padding: 0.4rem 0.875rem; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-secondary); transition: all 0.2s; cursor: pointer; white-space: nowrap; }
+.tabBtn:hover { color: var(--text-primary); }
+.tabBtnActive { background: var(--accent-blue-dim); border-color: var(--accent-blue); color: var(--accent-blue); font-weight: 700; }
+
 .statRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
 .section { display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.4s ease both; animation-delay: 0.1s; }
 .sectionTitle { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+.sectionHeader { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Accordion */
 .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
 .accordionItem { background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s; }
 .accordionOpen { border-color: rgba(88,166,255,0.3); }
@@ -19,7 +28,35 @@
 .badge_green { background: var(--accent-green-dim); color: var(--accent-green); }
 .badge_amber { background: var(--accent-amber-dim); color: var(--accent-amber); }
 .badge_red   { background: var(--accent-red-dim);   color: var(--accent-red); }
-.exportBtn { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.65rem; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-secondary); transition: all 0.2s; }
-.exportBtn:hover { background: rgba(63,185,80,0.1); color: var(--accent-green); border-color: rgba(63,185,80,0.3); }
 .accordionBody { padding: 0 1rem 1rem; }
-@media (max-width: 600px) { .page { padding: 1.25rem 1rem 5rem; } .statRow { grid-template-columns: 1fr 1fr; } }
+
+/* Export button */
+.exportBtn { display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 500; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-secondary); transition: all 0.2s; cursor: pointer; }
+.exportBtn:hover { background: var(--accent-green-dim); color: var(--accent-green); border-color: rgba(63,185,80,0.3); }
+
+/* Subject report table */
+.subjectReportTable { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border-glass); }
+.reportTable { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.reportTable thead tr { background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border-glass); }
+.reportTable th { padding: 0.75rem 1rem; text-align: left; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+.reportTable td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-subtle); }
+.reportTable tbody tr:last-child td { border-bottom: none; }
+.reportTable tbody tr:hover td { background: rgba(255,255,255,0.02); }
+.subjectName { font-weight: 600; color: var(--text-primary); }
+.periodSlot  { font-family: monospace; font-size: 0.8rem; color: var(--text-secondary); }
+.barCell { display: flex; align-items: center; gap: 0.75rem; }
+.miniBarTrack { flex: 1; max-width: 200px; height: 6px; background: var(--border-subtle); border-radius: 99px; overflow: hidden; }
+.miniBarFill  { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
+.fill_green { background: var(--accent-green); }
+.fill_amber { background: var(--accent-amber); }
+.fill_red   { background: var(--accent-red); }
+.pctTag { font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 99px; white-space: nowrap; }
+.tag_green { background: var(--accent-green-dim); color: var(--accent-green); }
+.tag_amber { background: var(--accent-amber-dim); color: var(--accent-amber); }
+.tag_red   { background: var(--accent-red-dim);   color: var(--accent-red); }
+.statusText { font-size: 0.75rem; font-weight: 600; }
+.status_green { color: var(--accent-green); }
+.status_amber { color: var(--accent-amber); }
+.status_red   { color: var(--accent-red); }
+
+@media (max-width: 600px) { .page { padding: 1.25rem 1rem 5rem; } .statRow { grid-template-columns: 1fr 1fr; } .headerTabs { width: 100%; } }

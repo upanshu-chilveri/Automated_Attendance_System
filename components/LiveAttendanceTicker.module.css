@@ -1,0 +1,29 @@
+.ticker { display: flex; flex-direction: column; gap: 4px; max-height: 220px; overflow-y: auto; }
+.empty  {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 1.25rem; color: var(--text-muted); font-size: 0.82rem;
+}
+.emptyIcon { opacity: 0.5; }
+
+.row {
+  display: grid; grid-template-columns: 70px 1fr auto auto;
+  align-items: center; gap: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  animation: fadeUp 0.3s ease both;
+  border: 1px solid;
+}
+.row_present { background: rgba(63,185,80,0.05);  border-color: rgba(63,185,80,0.15); }
+.row_flagged { background: rgba(248,81,73,0.05);  border-color: rgba(248,81,73,0.15); }
+
+.time   { font-family: monospace; font-size: 0.7rem; color: var(--text-muted); }
+.name   { font-weight: 600; color: var(--text-primary); }
+.conf   { font-size: 0.7rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 99px; }
+.conf_green { background: var(--accent-green-dim); color: var(--accent-green); }
+.conf_amber { background: var(--accent-amber-dim); color: var(--accent-amber); }
+.conf_red   { background: var(--accent-red-dim);   color: var(--accent-red); }
+
+.status     { font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+.statusOk   { color: var(--accent-green); }
+.statusFlag { color: var(--accent-red); }

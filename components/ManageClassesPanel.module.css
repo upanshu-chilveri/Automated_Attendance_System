@@ -1,0 +1,123 @@
+.panel { display: flex; flex-direction: column; gap: 1rem; }
+
+.toolbar {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.hint {
+  font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;
+  max-width: 480px;
+}
+.hint strong { color: var(--text-primary); }
+
+.addBtn {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.82rem; font-weight: 600; white-space: nowrap;
+  padding: 0.45rem 1rem; border-radius: var(--radius-sm);
+  background: var(--accent-blue); border: none; color: #fff;
+  transition: opacity 0.2s;
+}
+.addBtn:hover { opacity: 0.85; }
+
+/* Add / Edit form */
+.formCard {
+  background: var(--bg-glass); border: 1px solid var(--accent-blue);
+  border-radius: var(--radius-md); padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  animation: fadeUp 0.25s ease;
+}
+.formTitle { font-size: 0.95rem; font-weight: 700; color: var(--accent-blue); }
+
+.formGrid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+}
+@media (max-width: 560px) { .formGrid { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
+.field input, .field select {
+  background: var(--bg-secondary); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); color: var(--text-primary);
+  font-size: 0.875rem; padding: 0.45rem 0.625rem; font-family: inherit;
+  transition: border-color 0.2s;
+}
+.field input:focus, .field select:focus { border-color: var(--accent-blue); outline: none; }
+
+.checkLabel {
+  display: flex; align-items: center; gap: 0.5rem;
+  cursor: pointer; font-size: 0.82rem; color: var(--text-secondary);
+}
+.checkLabel input { accent-color: var(--accent-blue); width: 15px; height: 15px; }
+.checkLabel span { display: flex; align-items: center; gap: 0.35rem; }
+
+.formActions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+.cancelBtn {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.45rem 0.875rem; border-radius: var(--radius-sm);
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
+}
+.cancelBtn:hover { border-color: var(--accent-red); color: var(--accent-red); }
+.saveBtn {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.45rem 1rem; border-radius: var(--radius-sm);
+  background: var(--accent-blue); border: none; color: #fff;
+  font-size: 0.82rem; font-weight: 600; transition: opacity 0.2s;
+}
+.saveBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.saveBtn:not(:disabled):hover { opacity: 0.85; }
+
+/* Class list */
+.list { display: flex; flex-direction: column; gap: 0.5rem; }
+.empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.875rem; }
+
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: var(--bg-glass); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding: 0.875rem 1rem;
+  animation: fadeUp 0.3s ease both; transition: border-color 0.2s;
+}
+.row:hover { border-color: var(--border-glass); }
+.rowLeft  { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+.rowRight { display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+
+.rowTitle {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.9rem; font-weight: 700; color: var(--text-primary);
+}
+.rowIcon { color: var(--text-muted); }
+
+.reIdBadge {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  font-size: 0.65rem; font-weight: 700;
+  background: var(--accent-blue-dim); color: var(--accent-blue);
+  border: 1px solid rgba(88,166,255,0.3); border-radius: 99px;
+  padding: 0.1rem 0.5rem;
+}
+.rowMeta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  font-size: 0.75rem; color: var(--text-secondary);
+}
+.camOn { color: var(--accent-green); }
+.camOff { color: var(--accent-red); }
+
+.editBtn, .deleteBtn {
+  width: 30px; height: 30px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-glass); background: var(--bg-glass);
+  transition: all 0.2s;
+}
+.editBtn:hover   { border-color: var(--accent-blue); color: var(--accent-blue); }
+.deleteBtn:hover { border-color: var(--accent-red);  color: var(--accent-red); }
+
+.confirmText { font-size: 0.78rem; color: var(--accent-amber); font-weight: 600; }
+.confirmYes {
+  padding: 0.25rem 0.625rem; border-radius: var(--radius-sm);
+  background: var(--accent-red-dim); border: 1px solid rgba(248,81,73,0.3);
+  color: var(--accent-red); font-size: 0.75rem; font-weight: 600;
+}
+.confirmNo {
+  padding: 0.25rem 0.625rem; border-radius: var(--radius-sm);
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-secondary); font-size: 0.75rem;
+}

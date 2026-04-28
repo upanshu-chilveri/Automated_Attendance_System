@@ -1,0 +1,164 @@
+.panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.semTabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.semTab {
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  transition: all 0.2s;
+}
+.semTab:hover { background: var(--bg-glass); color: var(--text-primary); }
+.semTabActive { background: var(--accent-blue-dim); border-color: var(--accent-blue); color: var(--accent-blue); font-weight: 600; }
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  background: var(--accent-blue-dim);
+  border: 1px solid var(--accent-blue);
+  border-radius: var(--radius-sm);
+  color: var(--accent-blue);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.875rem;
+  transition: all 0.2s;
+}
+.addBtn:hover { background: var(--accent-blue); color: #fff; }
+
+.form {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.3s ease;
+}
+
+.formTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.875rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  padding: 0.45rem 0.7rem;
+}
+.formInput:focus { border-color: var(--accent-blue); outline: none; }
+
+.formActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.saveBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--accent-blue);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  transition: opacity 0.2s;
+}
+.saveBtn:hover { opacity: 0.85; }
+
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.45rem 0.875rem;
+  transition: all 0.2s;
+}
+.cancelBtn:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+.list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.875rem;
+  animation: fadeUp 0.3s ease both;
+  transition: border-color 0.2s;
+}
+.item:hover { border-color: var(--border-glass); }
+
+.itemLeft { display: flex; align-items: center; gap: 0.65rem; }
+.itemIcon { color: var(--text-muted); }
+
+.itemName { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+.itemMeta { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.1rem; }
+
+.itemActions { display: flex; gap: 0.4rem; }
+
+.iconBtn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.iconBtn:hover { background: var(--accent-blue-dim); border-color: var(--accent-blue); color: var(--accent-blue); }
+.iconBtnDanger:hover { background: var(--accent-red-dim); border-color: var(--accent-red); color: var(--accent-red); }
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 2rem;
+}

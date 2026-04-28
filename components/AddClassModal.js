@@ -1,20 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Plus, Minus } from 'lucide-react';
+import { X, Plus, Minus, CheckSquare, Square } from 'lucide-react';
+import { useAttendance } from '@/context/AttendanceContext';
 import { periods } from '@/data/mockData';
 import styles from './AddClassModal.module.css';
 
-export default function AddClassModal({ students, onClose, onSubmit }) {
+export default function AddClassModal({ students, onClose }) {
+  const { markAttendance, settings } = useAttendance();
+  const semesterId = settings?.currentSemester ?? 3;
+
   const today = new Date().toISOString().slice(0, 10);
-  const [date, setDate] = useState(today);
-  const [period, setPeriod] = useState(1);
+  const [date,       setDate]       = useState(today);
+  const [period,     setPeriod]     = useState(1);
   const [attendance, setAttendance] = useState(
     Object.fromEntries(students.map(s => [s.id, true]))
   );
   const [submitted, setSubmitted] = useState(false);
 
-  const toggle = (id) => setAttendance(prev => ({ ...prev, [id]: !prev[id] }));
+  const toggle     = (id) => setAttendance(prev => ({ ...prev, [id]: !prev[id] }));
+  const markAll    = (val) => setAttendance(Object.fromEntries(students.map(s => [s.id, val])));
+
+  const presentCount = Object.values(attendance).filter(Boolean).length;
 
   const handleSubmit = () => {
     const records = students.map(s => ({
@@ -22,13 +29,12 @@ export default function AddClassModal({ students, onClose, onSubmit }) {
       date,
       period: Number(period),
       status: attendance[s.id] ? 'present' : 'absent',
+      semesterId,
     }));
-    onSubmit?.(records);
+    markAttendance(records);   // ✅ Now actually updates live state
     setSubmitted(true);
-    setTimeout(onClose, 1200);
+    setTimeout(onClose, 1400);
   };
-
-  const presentCount = Object.values(attendance).filter(Boolean).length;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -41,7 +47,7 @@ export default function AddClassModal({ students, onClose, onSubmit }) {
         {submitted ? (
           <div className={styles.success}>
             <div className={styles.successIcon}>✅</div>
-            <p>Attendance recorded successfully!</p>
+            <p>Attendance recorded for {presentCount} / {students.length} students!</p>
           </div>
         ) : (
           <>
@@ -51,7 +57,7 @@ export default function AddClassModal({ students, onClose, onSubmit }) {
                 <input type="date" value={date} onChange={e => setDate(e.target.value)} />
               </label>
               <label>
-                <span>Period</span>
+                <span>Period / Subject</span>
                 <select value={period} onChange={e => setPeriod(e.target.value)}>
                   {periods.map(p => (
                     <option key={p.period} value={p.period}>{p.time} — {p.subject}</option>
@@ -60,14 +66,31 @@ export default function AddClassModal({ students, onClose, onSubmit }) {
               </label>
             </div>
 
+            {/* Bulk actions */}
+            <div className={styles.bulkRow}>
+              <span className={styles.tally}>{presentCount}/{students.length} Present</span>
+              <div className={styles.bulkBtns}>
+                <button className={`${styles.bulkBtn} ${styles.bulkPresent}`} onClick={() => markAll(true)}>
+                  <CheckSquare size={13} /> All Present
+                </button>
+                <button className={`${styles.bulkBtn} ${styles.bulkAbsent}`} onClick={() => markAll(false)}>
+                  <Square size={13} /> All Absent
+                </button>
+              </div>
+            </div>
+
             <div className={styles.studentListHeader}>
               <span>Students</span>
-              <span className={styles.tally}>{presentCount}/{students.length} Present</span>
+              <span className={styles.hint}>Click to toggle</span>
             </div>
 
             <div className={styles.studentList}>
               {students.map(s => (
-                <div key={s.id} className={`${styles.studentRow} ${attendance[s.id] ? styles.present : styles.absent}`} onClick={() => toggle(s.id)}>
+                <div
+                  key={s.id}
+                  className={`${styles.studentRow} ${attendance[s.id] ? styles.present : styles.absent}`}
+                  onClick={() => toggle(s.id)}
+                >
                   <div className={styles.studentInfo}>
                     <span className={styles.roll}>{s.rollNo}</span>
                     <span className={styles.sName}>{s.name}</span>
