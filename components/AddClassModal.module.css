@@ -34,11 +34,28 @@
 .fields label { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
 .fields input, .fields select { width: 100%; }
 
-.bulkRow {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 0.75rem;
+.progressWrap {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  margin-bottom: 0.875rem;
 }
-.tally { color: var(--accent-blue); font-size: 0.8rem; font-weight: 600; }
+.tallyRow {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;
+}
+.tally { display: flex; align-items: center; gap: 0.25rem; font-size: 0.82rem; font-weight: 600; }
+.tallyPresent { color: var(--accent-green); }
+.tallySep     { color: var(--text-muted); }
+.tallyAbsent  { color: var(--accent-red); }
+/* Stacked bar: red background = absent, green fill = present */
+.barTrack {
+  width: 100%; height: 8px;
+  background: var(--accent-red-dim);
+  border: 1px solid rgba(248,81,73,0.25);
+  border-radius: 99px; overflow: hidden;
+}
+.barPresent {
+  height: 100%; background: var(--accent-green);
+  border-radius: 99px; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
 .bulkBtns { display: flex; gap: 0.4rem; }
 .bulkBtn {
   display: flex; align-items: center; gap: 0.3rem;

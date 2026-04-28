@@ -10,6 +10,7 @@ const MONTHS = ['January','February','March','April','May','June','July','August
 
 function statusColor(status) {
   if (status === 'present')  return 'var(--accent-green)';
+  if (status === 'late')     return 'var(--accent-amber)';  // amber = late
   if (status === 'absent')   return 'var(--accent-red)';
   if (status === 'no-class') return 'var(--text-muted)';
   return 'var(--border-glass)';
@@ -61,12 +62,14 @@ export default function AttendanceCalendar({ attendanceData = [] }) {
     const dateStr = date.toISOString().slice(0, 10);
     const dayRecs = attendanceData.filter(r => r.date === dateStr && r.status !== 'no-class');
     if (dayRecs.length === 0) return 'none';
-    const presentCount = dayRecs.filter(r => r.status === 'present').length;
+    // 'late' counts as attended (matches calcAttendanceStats)
+    const presentCount = dayRecs.filter(r => r.status === 'present' || r.status === 'late').length;
     const pct = presentCount / dayRecs.length;
     if (pct === 1) return 'full';
     if (pct >= 0.5) return 'partial';
     return 'absent';
   }
+
 
   const today = new Date().toISOString().slice(0, 10);
 
@@ -123,7 +126,15 @@ export default function AttendanceCalendar({ attendanceData = [] }) {
                     key={`${di}-${p.period}`}
                     className={`${styles.cell} ${isSun ? styles.cellDisabled : ''}`}
                     style={{ '--cell-color': statusColor(status) }}
-                    onMouseEnter={e => !isSun && status && setTooltip({ text: `${p.time} — ${status === 'present' ? '✅ Present' : status === 'absent' ? '❌ Absent' : '—'} | ${p.subject}`, x: e.clientX, y: e.clientY })}
+                    onMouseEnter={e => !isSun && status && setTooltip({
+                      text: `${p.time} — ${
+                        status === 'present' ? '✅ Present'
+                        : status === 'late'    ? '🕐 Late'
+                        : status === 'absent'  ? '❌ Absent'
+                        : '—'
+                      } | ${p.subject}`,
+                      x: e.clientX, y: e.clientY
+                    })}
                     onMouseLeave={() => setTooltip(null)}
                   >
                     {!isSun && status && status !== 'no-class' && (
@@ -167,8 +178,9 @@ export default function AttendanceCalendar({ attendanceData = [] }) {
       {/* Legend */}
       <div className={styles.legend}>
         <span><span className={styles.dot} style={{ background: 'var(--accent-green)' }} /> Present</span>
-        <span><span className={styles.dot} style={{ background: 'var(--accent-red)' }} /> Absent</span>
-        <span><span className={styles.dot} style={{ background: 'var(--text-muted)' }} /> No Class</span>
+        <span><span className={styles.dot} style={{ background: 'var(--accent-amber)' }} /> Late</span>
+        <span><span className={styles.dot} style={{ background: 'var(--accent-red)' }}   /> Absent</span>
+        <span><span className={styles.dot} style={{ background: 'var(--text-muted)' }}   /> No Class</span>
       </div>
     </div>
   );

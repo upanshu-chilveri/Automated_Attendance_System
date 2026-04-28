@@ -57,3 +57,21 @@
 
 .empty { text-align: center; padding: 2rem; color: var(--text-muted); }
 .hint  { font-size: 0.72rem; color: var(--text-muted); text-align: right; }
+
+/* Mini attendance bar — inside each table row */
+.barCell {
+  display: flex; align-items: center; gap: 0.625rem;
+}
+.miniBarTrack {
+  flex: 1; max-width: 160px; height: 6px;
+  background: var(--border-subtle);
+  border-radius: 99px; overflow: hidden;
+}
+.miniBarFill {
+  height: 100%; border-radius: 99px;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.fill_green { background: var(--accent-green); }
+.fill_amber { background: var(--accent-amber); }
+.fill_red   { background: var(--accent-red); }
+.fraction   { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; }

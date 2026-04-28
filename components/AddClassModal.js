@@ -66,16 +66,29 @@ export default function AddClassModal({ students, onClose }) {
               </label>
             </div>
 
-            {/* Bulk actions */}
-            <div className={styles.bulkRow}>
-              <span className={styles.tally}>{presentCount}/{students.length} Present</span>
-              <div className={styles.bulkBtns}>
-                <button className={`${styles.bulkBtn} ${styles.bulkPresent}`} onClick={() => markAll(true)}>
-                  <CheckSquare size={13} /> All Present
-                </button>
-                <button className={`${styles.bulkBtn} ${styles.bulkAbsent}`} onClick={() => markAll(false)}>
-                  <Square size={13} /> All Absent
-                </button>
+            {/* Present / Absent tally + visual bar */}
+            <div className={styles.progressWrap}>
+              <div className={styles.tallyRow}>
+                <span className={styles.tally}>
+                  <span className={styles.tallyPresent}>{presentCount} Present</span>
+                  <span className={styles.tallySep}> · </span>
+                  <span className={styles.tallyAbsent}>{students.length - presentCount} Absent</span>
+                </span>
+                <div className={styles.bulkBtns}>
+                  <button className={`${styles.bulkBtn} ${styles.bulkPresent}`} onClick={() => markAll(true)}>
+                    <CheckSquare size={13} /> All Present
+                  </button>
+                  <button className={`${styles.bulkBtn} ${styles.bulkAbsent}`} onClick={() => markAll(false)}>
+                    <Square size={13} /> All Absent
+                  </button>
+                </div>
+              </div>
+              {/* Stacked bar: green = present, red = absent */}
+              <div className={styles.barTrack}>
+                <div
+                  className={styles.barPresent}
+                  style={{ width: `${students.length ? (presentCount / students.length) * 100 : 0}%` }}
+                />
               </div>
             </div>
 

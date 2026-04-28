@@ -25,12 +25,14 @@ export default function StudentTable({
   const [sortDir, setSortDir] = useState('asc');
 
   const rows = useMemo(() => students.map(s => {
-    const recs    = (attendanceMap[s.id] || []).filter(r => r.status !== 'no-class');
-    const attended = recs.filter(r => r.status === 'present').length;
+    const recs     = (attendanceMap[s.id] || []).filter(r => r.status !== 'no-class');
+    // 'late' counts as attended (matches calcAttendanceStats logic)
+    const attended = recs.filter(r => r.status === 'present' || r.status === 'late').length;
     const total    = recs.length;
     const pct      = total > 0 ? Math.round((attended / total) * 100) : 0;
-    return { ...s, attended, total, pct };
-  }), [students, attendanceMap]);
+    const variant  = pct >= threshold ? 'green' : pct >= 60 ? 'amber' : 'red';
+    return { ...s, attended, total, pct, variant };
+  }), [students, attendanceMap, threshold]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
@@ -81,9 +83,7 @@ export default function StudentTable({
             <tr>
               <th onClick={() => toggleSort('rollNo')} className={styles.sortable}><span className={styles.thHeader}>Roll No <SortIcon k="rollNo" /></span></th>
               <th onClick={() => toggleSort('name')}   className={styles.sortable}><span className={styles.thHeader}>Name <SortIcon k="name" /></span></th>
-              <th onClick={() => toggleSort('attended')} className={styles.sortable}><span className={styles.thHeader}>Attended <SortIcon k="attended" /></span></th>
-              <th>Total</th>
-              <th onClick={() => toggleSort('pct')} className={styles.sortable}><span className={styles.thHeader}>% <SortIcon k="pct" /></span></th>
+              <th onClick={() => toggleSort('pct')} className={styles.sortable}><span className={styles.thHeader}>Attendance <SortIcon k="pct" /></span></th>
               <th>Status</th>
               <th>Export</th>
             </tr>
@@ -99,9 +99,19 @@ export default function StudentTable({
               >
                 <td className={styles.rollNo}>{s.rollNo}</td>
                 <td className={styles.name}>{s.name}</td>
-                <td>{s.attended}</td>
-                <td>{s.total}</td>
-                <td><StatusBadge pct={s.pct} threshold={threshold} /></td>
+                {/* Mini bar column: shows present vs absent visually */}
+                <td colSpan={3}>
+                  <div className={styles.barCell}>
+                    <div className={styles.miniBarTrack}>
+                      <div
+                        className={`${styles.miniBarFill} ${styles[`fill_${s.variant}`]}`}
+                        style={{ width: `${s.pct}%` }}
+                      />
+                    </div>
+                    <span className={`${styles.badge} ${styles[s.variant]}`}>{s.pct}%</span>
+                    <span className={styles.fraction}>{s.attended}/{s.total}</span>
+                  </div>
+                </td>
                 <td>
                   {s.pct >= threshold
                     ? <span className={`${styles.statusText} ${styles.statusGreen}`}>On Track</span>

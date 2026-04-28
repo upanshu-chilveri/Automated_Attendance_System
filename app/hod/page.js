@@ -130,6 +130,15 @@ export default function HodPage() {
                         <span className={styles.studentCount}>{cls.students.length} students</span>
                       </div>
                       <div className={styles.accRight}>
+                        {/* Mini bar showing class-wide average */}
+                        <div className={styles.accBarWrap}>
+                          <div className={styles.accBarTrack}>
+                            <div
+                              className={`${styles.accBarFill} ${styles[`fill_${avgVariant}`]}`}
+                              style={{ width: `${cls.avgPct}%` }}
+                            />
+                          </div>
+                        </div>
                         <span className={`${styles.avgBadge} ${styles[`badge_${avgVariant}`]}`}>
                           Avg {cls.avgPct}%
                         </span>

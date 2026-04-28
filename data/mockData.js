@@ -156,15 +156,16 @@ export const periods = initialSubjects
 }
 
 export const initialAttendanceRecords = [
-  // Semester 3 (current)
-  ...makeRecords('stu001', '2026-03-17', 38, 3),
-  ...makeRecords('stu002', '2026-03-17', 38, 3),
-  ...makeRecords('stu003', '2026-03-17', 38, 3),
-  ...makeRecords('stu004', '2026-03-17', 38, 3),
-  ...makeRecords('stu005', '2026-03-17', 38, 3),
-  ...makeRecords('stu006', '2026-03-17', 38, 3),
-  ...makeRecords('stu007', '2026-03-17', 38, 3),
-  ...makeRecords('stu008', '2026-03-17', 38, 3),
+  // Semester 3 (current) — 80 days from 2026-03-17 covers through ~2026-06-05
+  // This ensures "today" (late April 2026 onward) always has attendance records
+  ...makeRecords('stu001', '2026-03-17', 80, 3),
+  ...makeRecords('stu002', '2026-03-17', 80, 3),
+  ...makeRecords('stu003', '2026-03-17', 80, 3),
+  ...makeRecords('stu004', '2026-03-17', 80, 3),
+  ...makeRecords('stu005', '2026-03-17', 80, 3),
+  ...makeRecords('stu006', '2026-03-17', 80, 3),
+  ...makeRecords('stu007', '2026-03-17', 80, 3),
+  ...makeRecords('stu008', '2026-03-17', 80, 3),
   // Semester 2 (previous)
   ...makeRecords('stu001', '2025-08-01', 80, 2),
   ...makeRecords('stu002', '2025-08-01', 80, 2),
@@ -175,6 +176,7 @@ export const initialAttendanceRecords = [
   ...makeRecords('stu007', '2025-08-01', 80, 2),
   ...makeRecords('stu008', '2025-08-01', 80, 2),
 ];
+
 
 // Backward-compat alias
 export const attendanceRecords = initialAttendanceRecords;
